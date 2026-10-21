@@ -1,0 +1,9 @@
+# 내보내기 결과물
+api-endpoints-*.json
+
+# OS / 에디터
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/

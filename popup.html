@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <!-- 외부 라이브러리 없음. 스타일은 인라인 <style> 로만 구성 -->
+  <style>
+    :root {
+      --bg: #1e1e2e;
+      --fg: #e4e4ef;
+      --muted: #9aa0b4;
+      --border: #333850;
+      --api: #2d4a2d;      /* API 경로 하이라이트 배경 */
+      --js: #3a2d4a;       /* js 출처 배경 */
+      --accent: #7aa2f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      width: 640px;
+      max-height: 560px;
+      margin: 0;
+      font: 12px/1.4 -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    header {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    h1 { font-size: 13px; margin: 0; flex: 0 0 auto; }
+    .count { color: var(--muted); font-size: 11px; }
+    input[type="search"] {
+      flex: 1 1 140px;
+      min-width: 120px;
+      background: #15151f;
+      border: 1px solid var(--border);
+      color: var(--fg);
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+    button {
+      background: #2a2a3c;
+      color: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+    button:hover { background: #363650; }
+    label.chk {
+      display: flex; align-items: center; gap: 4px;
+      color: var(--muted); user-select: none; cursor: pointer;
+    }
+    .wrap { overflow: auto; max-height: 470px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+      text-align: left;
+      padding: 4px 6px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      word-break: break-all;
+    }
+    th { position: sticky; top: 0; background: #15151f; z-index: 1; }
+    td.method { white-space: nowrap; font-weight: 600; }
+    td.status { white-space: nowrap; text-align: right; }
+    tr.api td.path { background: var(--api); }
+    td.src-js { color: #c4a7e7; }
+    .empty { padding: 20px; text-align: center; color: var(--muted); }
+    .s-2xx { color: #9ece6a; }
+    .s-3xx { color: #e0af68; }
+    .s-4xx, .s-5xx, .s-0 { color: #f7768e; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>API Endpoints</h1>
+    <span class="count" id="count">0개</span>
+    <input type="search" id="search" placeholder="검색 (경로/메서드)" />
+    <label class="chk"><input type="checkbox" id="apiOnly" /> API만</label>
+    <button id="refresh">새로고침</button>
+    <button id="copy">복사</button>
+    <button id="export">JSON 내보내기</button>
+    <button id="clear">초기화</button>
+  </header>
+
+  <div class="wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:70px">메서드</th>
+          <th>경로</th>
+          <th style="width:70px">출처</th>
+          <th style="width:50px">상태</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="empty" id="empty">아직 수집된 요청이 없습니다. 페이지와 상호작용 후 "새로고침"을 누르세요.</div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

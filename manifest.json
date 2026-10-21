@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "API Endpoint Collector",
+  "version": "1.0.0",
+  "description": "현재 탭의 네트워크 API 요청과 JS 번들에 숨은 API 경로를 수집/정리하는 보안 진단·디버깅 도구",
+  "permissions": [
+    "webRequest",
+    "tabs",
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "API Endpoint Collector"
+  }
+}
